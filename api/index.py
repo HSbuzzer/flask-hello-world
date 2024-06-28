@@ -8,8 +8,10 @@ CORS(app)
 
 @app.route("/")
 def home():
-    resp = flask.Response("Foo bar baz")
+    resp = flask.Response("Hello world!")
     resp.headers["Content-Type"] = "text/plain"
+    resp.headers["Connection"] = "Keep-Alive"
+    resp.headers["Keep-Alive"] = "timeout=5, max=1000"
     return resp
 
 
