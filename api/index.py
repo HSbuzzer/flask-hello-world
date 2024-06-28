@@ -10,6 +10,7 @@ counter = 0
 
 @app.route("/")
 def home():
+    global counter
     resp = flask.Response(f"Hello world! {counter} times")
     counter += 1
     resp.headers["Content-Type"] = "text/plain"
