@@ -11,6 +11,7 @@ counter = 0
 @app.route("/")
 def home():
     resp = flask.Response(f"Hello world! {counter} times")
+    counter += 1
     resp.headers["Content-Type"] = "text/plain"
     resp.headers["Connection"] = "Keep-Alive"
     resp.headers["Keep-Alive"] = "timeout=5, max=1000"
