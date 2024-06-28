@@ -1,13 +1,18 @@
-from flask import Flask
+import flask
 from flask_cors import CORS
 
-app = Flask(__name__)
+
+app = flask.Flask(__name__)
 CORS(app)
 
-@app.route('/')
-def home():
-    return Response("Hello, world!", mimetype='text/plain')
 
-@app.route('/about')
+@app.route("/")
+def home():
+    resp = flask.Response("Foo bar baz")
+    resp.headers["Content-Type"] = "text/plain"
+    return resp
+
+
+@app.route("/about")
 def about():
-    return 'About'
+    return "About"
