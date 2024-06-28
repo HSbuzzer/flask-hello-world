@@ -6,7 +6,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    return Response("Hello, world!", mimetype='text/plain')
 
 @app.route('/about')
 def about():
