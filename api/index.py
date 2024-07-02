@@ -1,7 +1,11 @@
 import flask
 from flask_cors import CORS
+from requests import get
+from dotenv import load_dotenv
+import os
+from time import sleep
 
-
+load_dotenv()
 app = flask.Flask(__name__)
 CORS(app)
 
@@ -19,6 +23,15 @@ def home():
     return resp
 
 
-@app.route("/about")
-def about():
-    return "About"
+@app.route("/LED")
+def LED():
+    botUpdates = get(f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/getUpdates')
+    botUpdates = botUpdates.json()
+    return str(botUpdates)
+
+@app.route("/test")
+def test():
+    get(f"https://api.telegram.org/bot{os.getenv('BOT_TOKEN')}/sendMessage?chat_id={os.getenv('CHAT_ID')}&text=operational")
+    return "message sent"
+
+# app.run(host="0.0.0.0")
