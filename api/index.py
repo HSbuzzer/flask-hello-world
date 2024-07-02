@@ -23,7 +23,7 @@ def home():
     return resp
 
 
-@app.route("/LED")
+@app.route("/led")
 def LED():
     # load last updateID
     with open('api/lastUpdate.json', 'r') as f:
@@ -31,7 +31,7 @@ def LED():
     updateID = last_update['update_id'] + 1
     
     
-    botUpdates = get(f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/getUpdates?allowed_updates=message&timeout=59&limit=1&offset={updateID}')
+    botUpdates = get(f'https://api.telegram.org/bot{os.getenv("BOT_TOKEN")}/getUpdates?allowed_updates=message&timeout=0&limit=1&offset={updateID}')
     update = botUpdates.json()['result']
     
     if update:
