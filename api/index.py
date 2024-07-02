@@ -31,7 +31,9 @@ def LED():
 
 @app.route("/test")
 def test():
-    get(f"https://api.telegram.org/bot{os.getenv('BOT_TOKEN')}/sendMessage?chat_id={os.getenv('CHAT_ID')}&text=operational")
-    return "message sent"
+    command = f"https://api.telegram.org/bot{os.getenv('BOT_TOKEN')}/sendMessage?chat_id={os.getenv('CHAT_ID')}&text=operational"
+    print(command)
+    get(command)
+    return f"message sent to chat {os.getenv('CHAT_ID')}"
 
 # app.run(host="0.0.0.0")
